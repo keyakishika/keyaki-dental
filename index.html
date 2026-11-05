@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+export default {
+  async fetch(request, env, ctx) {
+    const html = `<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -11,10 +13,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --base-color: #2b5842;    /* 少し深みのある木立のグリーン */
-      --sub-color: #705842;     /* 落ち着いたブラウン */
-      --accent-color: #d46b43;  /* ぬくもりのあるテラコッタ */
-      --bg-natural: #fcfbfa;    /* 優しく温かい白 */
+      --base-color: #2b5842;
+      --sub-color: #705842;
+      --accent-color: #d46b43;
+      --bg-natural: #fcfbfa;
       --bg-box: #f5f2ec;
       --text-main: #38322c;
       --text-sub: #6e655d;
@@ -56,9 +58,7 @@
       align-items: center;
       gap: 12px;
     }
-    .logo-area {
-      min-width: 0;
-    }
+    .logo-area { min-width: 0; }
     .logo-area h1 {
       font-size: 1.4rem;
       font-family: 'Zen Maru Gothic', sans-serif;
@@ -92,9 +92,7 @@
     }
 
     /* グローバルナビ */
-    .global-nav {
-      background: var(--base-color);
-    }
+    .global-nav { background: var(--base-color); }
     .global-nav ul {
       display: flex;
       list-style: none;
@@ -105,9 +103,7 @@
       text-align: center;
       border-right: 1px solid rgba(255,255,255,0.15);
     }
-    .global-nav li:first-child {
-      border-left: 1px solid rgba(255,255,255,0.15);
-    }
+    .global-nav li:first-child { border-left: 1px solid rgba(255,255,255,0.15); }
     .global-nav a {
       display: block;
       color: #ffffff;
@@ -115,10 +111,7 @@
       padding: 10px 4px;
       font-weight: 500;
     }
-    .global-nav a:hover {
-      background: rgba(0,0,0,0.1);
-      opacity: 1;
-    }
+    .global-nav a:hover { background: rgba(0,0,0,0.1); opacity: 1; }
 
     /* メインビジュアル（ファーストビュー） */
     .main-visual {
@@ -126,13 +119,16 @@
       padding: 40px 0;
       border-bottom: 1px solid var(--border-line);
     }
-    .mv-grid {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    .mv-text {
-      flex: 1.1;
+    .mv-grid { display: flex; gap: 32px; align-items: center; }
+    .mv-text { flex: 1.1; }
+    .mv-clinic-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--base-color);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
     }
     .mv-badge {
       display: inline-block;
@@ -179,11 +175,7 @@
       padding: 12px 0;
       font-size: 0.85rem;
     }
-    .news-flex {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
+    .news-flex { display: flex; gap: 16px; align-items: center; }
     .news-tag {
       background: var(--accent-color);
       color: #fff;
@@ -196,10 +188,7 @@
 
     /* セクション共通 */
     section { padding: 60px 0; }
-    .sec-title-box {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+    .sec-title-box { text-align: center; margin-bottom: 40px; }
     .sec-title-en {
       font-size: 0.75rem;
       color: var(--sub-color);
@@ -215,7 +204,7 @@
       font-weight: 700;
     }
 
-    /* 当院について（選ばれる理由） */
+    /* 当院について */
     .about-bg { background-color: var(--bg-natural); }
     .features-list {
       display: grid;
@@ -242,10 +231,7 @@
       margin-bottom: 12px;
       line-height: 1.4;
     }
-    .feature-box p {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-    }
+    .feature-box p { font-size: 0.85rem; color: var(--text-sub); }
 
     /* 診療案内 */
     .services-grid {
@@ -265,10 +251,7 @@
       color: var(--text-main);
       margin-bottom: 8px;
     }
-    .service-card p {
-      font-size: 0.83rem;
-      color: var(--text-sub);
-    }
+    .service-card p { font-size: 0.83rem; color: var(--text-sub); }
 
     /* 初診の流れ */
     .flow-grid {
@@ -295,10 +278,7 @@
       margin-bottom: 8px;
       font-weight: 700;
     }
-    .flow-card p {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-    }
+    .flow-card p { font-size: 0.8rem; color: var(--text-sub); }
 
     /* 診療時間 */
     .hours-table {
@@ -313,28 +293,16 @@
       border: 1px solid var(--border-line);
       padding: 12px 4px;
     }
-    .hours-table th:first-child, .hours-table td:first-child {
-      width: 34%;
-    }
-    .hours-table th:not(:first-child), .hours-table td:not(:first-child) {
-      width: 8.25%;
-    }
+    .hours-table th:first-child, .hours-table td:first-child { width: 34%; }
+    .hours-table th:not(:first-child), .hours-table td:not(:first-child) { width: 8.25%; }
     .hours-table th {
       background: var(--base-color);
       color: #fff;
       font-weight: 500;
     }
-    .hours-table td.has-time {
-      color: var(--base-color);
-      font-weight: 700;
-    }
-    .hours-table td.short-time {
-      color: var(--accent-color);
-      font-weight: 700;
-    }
-    .hours-table td.off {
-      color: #ccc;
-    }
+    .hours-table td.has-time { color: var(--base-color); font-weight: 700; }
+    .hours-table td.short-time { color: var(--accent-color); font-weight: 700; }
+    .hours-table td.off { color: #ccc; }
     .hours-info-box {
       margin-top: 16px;
       background: var(--bg-box);
@@ -350,22 +318,10 @@
       margin-bottom: 6px;
       display: block;
     }
-    .weekend-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .weekend-row {
-      display: flex;
-      align-items: flex-start;
-    }
-    .weekend-day {
-      flex-shrink: 0;
-      width: 5.5em;
-    }
-    .weekend-times {
-      flex: 1;
-    }
+    .weekend-list { display: flex; flex-direction: column; gap: 4px; }
+    .weekend-row { display: flex; align-items: flex-start; }
+    .weekend-day { flex-shrink: 0; width: 5.5em; }
+    .weekend-times { flex: 1; }
     .hours-info-box .closed-note {
       margin-top: 8px;
       padding-top: 8px;
@@ -375,33 +331,16 @@
     }
 
     /* アクセス・概要 */
-    .access-grid {
-      display: flex;
-      gap: 32px;
-    }
-    .access-info {
-      flex: 1;
-      font-size: 0.88rem;
-    }
-    .access-info table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    .access-grid { display: flex; gap: 32px; }
+    .access-info { flex: 1; font-size: 0.88rem; }
+    .access-info table { width: 100%; border-collapse: collapse; }
     .access-info th, .access-info td {
       padding: 10px 0;
       border-bottom: 1px solid var(--border-line);
       text-align: left;
     }
-    .access-info th {
-      width: 90px;
-      color: var(--text-main);
-      font-weight: 700;
-    }
-    .access-map {
-      flex: 1;
-      height: 300px;
-      border: 1px solid var(--border-line);
-    }
+    .access-info th { width: 90px; color: var(--text-main); font-weight: 700; }
+    .access-map { flex: 1; height: 300px; border: 1px solid var(--border-line); }
     .access-map iframe { width: 100%; height: 100%; border: 0; }
 
     /* フッター */
@@ -417,12 +356,7 @@
       font-size: 1.2rem;
       margin-bottom: 6px;
     }
-    footer .f-info {
-      color: #c4bbb2;
-      margin-bottom: 16px;
-    }
-
-    /* スマホ用下部固定ボタン */
+    footer .f-info { color: #c4bbb2; margin-bottom: 16px; }
     .sp-fixed-nav { display: none; }
 
     @media (max-width: 768px) {
@@ -431,16 +365,8 @@
       .inner { padding: 0 14px; }
       .header-flex { gap: 8px; }
       .logo-area h1 { font-size: 1.2rem; }
-      .logo-area p {
-        font-size: 0.62rem;
-        letter-spacing: 0;
-        line-height: 1.3;
-      }
-      .header-contact .tel-label {
-        font-size: 0.6rem;
-        letter-spacing: 0;
-        margin-bottom: 2px;
-      }
+      .logo-area p { font-size: 0.62rem; letter-spacing: 0; line-height: 1.3; }
+      .header-contact .tel-label { font-size: 0.6rem; letter-spacing: 0; margin-bottom: 2px; }
       .header-contact .tel-num {
         font-size: 0.92rem;
         background: #f5f2ec;
@@ -450,11 +376,8 @@
         letter-spacing: 0.02em;
       }
       .main-visual { padding: 28px 0; }
-      .mv-text h2 {
-        font-size: 1.18rem;
-        line-height: 1.45;
-        margin-bottom: 10px;
-      }
+      .mv-clinic-name { font-size: 1.95rem; margin-bottom: 8px; }
+      .mv-text h2 { font-size: 1.18rem; line-height: 1.45; margin-bottom: 10px; }
       .mv-grid, .features-list, .services-grid, .flow-grid, .access-grid {
         flex-direction: column;
         grid-template-columns: 1fr;
@@ -529,6 +452,7 @@
   <div class="main-visual">
     <div class="inner mv-grid">
       <div class="mv-text">
+        <div class="mv-clinic-name">けやき歯科</div>
         <span class="mv-badge">吉川駅南口から歩いて3分</span>
         <h2>地域の皆さまのお口の健康を、<br>やさしく丁寧にお守りします。</h2>
         <p>けやき歯科では、できるだけ痛みの少ない治療と、しっかりとした分かりやすい事前説明を心がけています。お子様からご年配の方まで、安心して通える歯医者を目指しています。</p>
@@ -771,4 +695,12 @@
   </div>
 
 </body>
-</html>
+</html>`;
+
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
+    });
+  },
+};
