@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>吉川市の歯医者・歯科｜けやき歯科（吉川駅南口徒歩3分）</title>
-  <meta name="description" content="吉川市木売の歯医者「けやき歯科」。JR吉川駅南口から歩いて3分、木売公園の近くです。むし歯治療はもちろん、小児歯科や矯正歯科（認定医）まで、地域の皆様の歯の健康をお守りします。お気軽にご相談ください。駐車場完備・土日も診療。">
+  <meta name="description" content="吉川市の歯医者「けやき歯科」。JR吉川駅南口から歩いて3分、木売公園の近くです。一般歯科・矯正歯科（認定医）・小児歯科・審美歯科まで、地域の皆様の歯の健康をお守りします。お気軽にご相談ください。駐車場完備・土日も診療。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
@@ -54,6 +54,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
+    }
+    .logo-area {
+      min-width: 0;
     }
     .logo-area h1 {
       font-size: 1.4rem;
@@ -69,6 +73,7 @@
     }
     .header-contact {
       text-align: right;
+      flex-shrink: 0;
     }
     .header-contact .tel-label {
       font-size: 0.72rem;
@@ -80,6 +85,10 @@
       font-weight: 700;
       color: var(--base-color);
       font-family: 'Zen Maru Gothic', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
     }
 
     /* グローバルナビ */
@@ -137,7 +146,7 @@
     }
     .mv-text h2 {
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: var(--text-main);
       line-height: 1.5;
       margin-bottom: 14px;
@@ -298,10 +307,17 @@
       background: #fff;
       text-align: center;
       font-size: 0.88rem;
+      table-layout: fixed;
     }
     .hours-table th, .hours-table td {
       border: 1px solid var(--border-line);
-      padding: 12px 6px;
+      padding: 12px 4px;
+    }
+    .hours-table th:first-child, .hours-table td:first-child {
+      width: 34%;
+    }
+    .hours-table th:not(:first-child), .hours-table td:not(:first-child) {
+      width: 8.25%;
     }
     .hours-table th {
       background: var(--base-color);
@@ -312,13 +328,50 @@
       color: var(--base-color);
       font-weight: 700;
     }
+    .hours-table td.short-time {
+      color: var(--accent-color);
+      font-weight: 700;
+    }
     .hours-table td.off {
       color: #ccc;
     }
-    .hours-note {
-      margin-top: 12px;
-      font-size: 0.8rem;
+    .hours-info-box {
+      margin-top: 16px;
+      background: var(--bg-box);
+      border: 1px solid var(--border-line);
+      border-radius: 4px;
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      line-height: 1.75;
+    }
+    .hours-info-box .weekend-title {
+      color: var(--accent-color);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .weekend-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .weekend-row {
+      display: flex;
+      align-items: flex-start;
+    }
+    .weekend-day {
+      flex-shrink: 0;
+      width: 5.5em;
+    }
+    .weekend-times {
+      flex: 1;
+    }
+    .hours-info-box .closed-note {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-line);
       color: var(--text-sub);
+      font-size: 0.82rem;
     }
 
     /* アクセス・概要 */
@@ -374,7 +427,34 @@
 
     @media (max-width: 768px) {
       .top-info { display: none; }
-      .header-contact { display: none; }
+      header { padding: 10px 0; }
+      .inner { padding: 0 14px; }
+      .header-flex { gap: 8px; }
+      .logo-area h1 { font-size: 1.2rem; }
+      .logo-area p {
+        font-size: 0.62rem;
+        letter-spacing: 0;
+        line-height: 1.3;
+      }
+      .header-contact .tel-label {
+        font-size: 0.6rem;
+        letter-spacing: 0;
+        margin-bottom: 2px;
+      }
+      .header-contact .tel-num {
+        font-size: 0.92rem;
+        background: #f5f2ec;
+        border: 1px solid var(--border-line);
+        padding: 4px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+      }
+      .main-visual { padding: 28px 0; }
+      .mv-text h2 {
+        font-size: 1.18rem;
+        line-height: 1.45;
+        margin-bottom: 10px;
+      }
       .mv-grid, .features-list, .services-grid, .flow-grid, .access-grid {
         flex-direction: column;
         grid-template-columns: 1fr;
@@ -383,6 +463,11 @@
       .global-nav li { flex: 0 0 33.3%; border-bottom: 1px solid rgba(255,255,255,0.15); }
       .global-nav a { font-size: 0.78rem; padding: 8px 2px; }
       section { padding: 40px 0; }
+      .hours-table { font-size: 0.8rem; }
+      .hours-table th, .hours-table td { padding: 10px 2px; }
+      .hours-table th:first-child, .hours-table td:first-child { width: 32%; }
+      .hours-table th:not(:first-child), .hours-table td:not(:first-child) { width: 8.5%; }
+      .hours-info-box { padding: 12px 14px; font-size: 0.8rem; }
       .access-map { height: 240px; }
       .sp-fixed-nav {
         display: flex;
@@ -419,11 +504,11 @@
     <div class="inner header-flex">
       <div class="logo-area">
         <h1>けやき歯科</h1>
-        <p>吉川市木売の歯科・小児歯科・矯正歯科</p>
+        <p>一般歯科・矯正歯科・小児歯科・審美歯科</p>
       </div>
       <div class="header-contact">
-        <span class="tel-label">お気軽にお問い合わせください</span>
-        <a href="tel:048-981-2002" class="tel-num">048-981-2002</a>
+        <span class="tel-label">お電話でのご予約・ご相談</span>
+        <a href="tel:048-981-2002" class="tel-num">📞 048-981-2002</a>
       </div>
     </div>
   </header>
@@ -505,24 +590,24 @@
           <p>痛む歯の治療をはじめ、できるだけ歯を削らない・抜かない治療を心がけて大切にお守りします。</p>
         </div>
         <div class="service-card">
-          <h3>予防歯科・クリーニング</h3>
-          <p>むし歯や歯周病になる前段階からのケアが大切です。定期的な検診や歯石取りを行っています。</p>
-        </div>
-        <div class="service-card">
-          <h3>歯周病治療</h3>
-          <p>歯ぐきの出血や腫れの原因となるプラークや歯石を取り除き、お口の環境を健康に整えます。</p>
+          <h3>矯正歯科（認定医在籍）</h3>
+          <p>見た目の美しさだけでなく、しっかりと噛める正しい噛み合わせを目指した矯正治療を行います。</p>
         </div>
         <div class="service-card">
           <h3>小児歯科</h3>
           <p>お子様が歯医者さん嫌いにならないよう、ペースに合わせて優しく楽しく治療を進めていきます。</p>
         </div>
         <div class="service-card">
-          <h3>矯正歯科（認定医在籍）</h3>
-          <p>見た目の美しさだけでなく、しっかりと噛める正しい噛み合わせを目指した矯正治療を行います。</p>
+          <h3>審美歯科</h3>
+          <p>銀歯を白い詰め物・被せ物に変えたい方や、口元をより自然で美しく整えたい方のご相談・治療に対応しています。</p>
         </div>
         <div class="service-card">
-          <h3>歯科口腔外科・入れ歯</h3>
-          <p>親知らずのご相談や、お口周りの違和感、お一人おひとりに合わせた入れ歯の作製・調整をいたします。</p>
+          <h3>予防歯科・歯周病治療</h3>
+          <p>むし歯や歯周病を防ぐ定期検診・クリーニングや、歯ぐきの腫れ・出血の原因となる歯石除去を行います。</p>
+        </div>
+        <div class="service-card">
+          <h3>入れ歯・義歯</h3>
+          <p>お口周りの違和感や噛みにくさのご相談、お一人おひとりに合わせた入れ歯の作製・調整をいたします。</p>
         </div>
       </div>
     </div>
@@ -565,7 +650,7 @@
         <span class="sec-title-en">Office Hours</span>
         <h2 class="sec-title">診療時間・休診日</h2>
       </div>
-      <div style="max-width: 760px; margin: 0 auto;">
+      <div style="max-width: 780px; margin: 0 auto;">
         <table class="hours-table">
           <thead>
             <tr>
@@ -577,6 +662,7 @@
               <th>金</th>
               <th>土</th>
               <th>日</th>
+              <th>祝</th>
             </tr>
           </thead>
           <tbody>
@@ -588,23 +674,42 @@
               <td class="has-time">●</td>
               <td class="has-time">●</td>
               <td class="has-time">●</td>
-              <td class="has-time" style="color:var(--accent-color);">★14時迄</td>
+              <td class="short-time">▲</td>
+              <td class="off">休</td>
             </tr>
             <tr>
-              <td>14:30〜19:30<br><span style="font-size:0.75rem; color:#888;">（土曜は17時迄）</span></td>
+              <td>14:30〜19:30</td>
               <td class="has-time">●</td>
               <td class="has-time">●</td>
               <td class="off">休</td>
               <td class="has-time">●</td>
               <td class="has-time">●</td>
-              <td class="has-time" style="font-size:0.8rem;">▲17時迄</td>
+              <td class="short-time">▲</td>
               <td class="off">ー</td>
+              <td class="off">休</td>
             </tr>
           </tbody>
         </table>
-        <div class="hours-note">
-          ※日曜の診療は 09:30〜14:00 までとなります（午後休診）。<br>
-          ※休診日：水曜日・日曜日午後・祝日
+        <div class="hours-info-box">
+          <span class="weekend-title">▲ 土曜・日曜の診療時間</span>
+          <div class="weekend-list">
+            <div class="weekend-row">
+              <div class="weekend-day">・土曜日</div>
+              <div class="weekend-times">
+                午前：<strong>09:30〜13:00まで</strong><br>
+                午後：<strong>14:30〜17:00まで</strong>
+              </div>
+            </div>
+            <div class="weekend-row">
+              <div class="weekend-day">・日曜日</div>
+              <div class="weekend-times">
+                午前：<strong>09:30〜14:00まで</strong>（午後は休診）
+              </div>
+            </div>
+          </div>
+          <div class="closed-note">
+            <strong>休診日</strong>：水曜日・祝日
+          </div>
         </div>
       </div>
     </div>
@@ -641,7 +746,7 @@
             </tr>
             <tr>
               <th>診療科目</th>
-              <td>歯科・小児歯科・矯正歯科・歯科口腔外科</td>
+              <td>一般歯科・矯正歯科・小児歯科・審美歯科</td>
             </tr>
           </table>
         </div>
