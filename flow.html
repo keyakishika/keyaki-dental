@@ -392,6 +392,18 @@ section { padding: 48px 0; }
   font-size: 0.88rem;
   color: var(--text-main);
 }
+.step-note a,
+.step-inline-links a {
+  font-weight: 700;
+  text-decoration: underline;
+}
+.step-inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 10px;
+  font-size: 0.88rem;
+}
 
 /* 初診時の持ち物ボックス */
 .belongings-box {
@@ -463,7 +475,7 @@ section { padding: 48px 0; }
   line-height: 1.75;
 }
 
-/* 関連ページ誘導（faq.html リンク） */
+/* 関連ページ誘導（faq.html / kids.html / ortho.html リンク） */
 .related-faq-box {
   margin-top: 32px;
   background: var(--bg-natural);
@@ -477,6 +489,12 @@ section { padding: 48px 0; }
   color: var(--text-main);
   margin-bottom: 14px;
 }
+.related-links-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
 .related-faq-btn {
   display: inline-flex;
   align-items: center;
@@ -485,10 +503,15 @@ section { padding: 48px 0; }
   background: var(--base-color);
   color: #ffffff;
   font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  padding: 12px 28px;
+  padding: 11px 22px;
   border-radius: 5px;
+}
+.related-faq-btn.is-sub {
+  background: #ffffff;
+  border: 1px solid var(--base-color);
+  color: var(--base-color);
 }
 .related-faq-btn:hover {
   opacity: 0.88;
@@ -684,6 +707,7 @@ footer .copy {
   .belongings-grid { grid-template-columns: 1fr; gap: 14px; }
   .belongings-col { padding: 18px 16px; }
   .related-faq-box { padding: 18px 16px; }
+  .related-links-group { flex-direction: column; }
   .related-faq-btn { width: 100%; font-size: 0.9rem; padding: 12px 16px; }
   .guide-card { padding: 22px 16px; }
   .guide-tel-btn { font-size: 1.2rem; padding: 10px 20px; width: 100%; }
@@ -831,7 +855,7 @@ footer .copy {
             <h3>ご予約・ご来院・問診票のご記入</h3>
             <p>当院は予約優先制となっておりますので、事前にお電話（<a href="tel:0489812002">048-981-2002</a>）にてご予約のうえご来院ください。初診時は問診票のご記入がございますので、<strong>ご予約時間の5〜10分前</strong>を目安にお越しいただくとスムーズにご案内できます。</p>
             <div class="step-note">
-              お車でお越しの際は無料駐車場（2台分）をご利用ください（満車時はお電話にてご案内いたします）。また、小さなお子様連れでベビーカーをお使いの方は、受付・待合スペースにてお預かりいたします。
+              お車でお越しの際は無料駐車場（2台分）をご利用ください（満車時はお電話にてご案内いたします／詳しくは<a href="#guide-heading">アクセス・駐車場のご案内</a>をご覧ください）。また、小さなお子様連れでベビーカーをお使いの方は、受付・待合スペースにてお預かりいたします（<a href="kids.html">お子様連れの通院・小児歯科について</a>）。
             </div>
           </div>
         </article>
@@ -872,6 +896,10 @@ footer .copy {
             <h3>検査結果のご説明・治療方針のご相談</h3>
             <p>検査で分かったお口の状態について、専門用語をできるだけかみ砕きながら分かりやすくご説明いたします。</p>
             <p>健康保険適用内の治療を基本としつつ、複数の選択肢がある場合や自費診療（自由診療）をご提案する際は、治療内容・期間・費用・メリットや一般的なリスクまで事前にお伝えし、患者様にご納得いただいたうえで治療方針を決定します。</p>
+            <div class="step-inline-links">
+              <a href="ortho.html">→ 矯正歯科のご案内を見る</a>
+              <a href="faq.html#cat-treatment-cost">→ 保険診療・自費診療のよくある質問を見る</a>
+            </div>
           </div>
         </article>
 
@@ -885,6 +913,9 @@ footer .copy {
             <h3>応急処置・治療の開始</h3>
             <p>強い痛みがある場合や詰め物が取れてお困りの場合は、まずおつらい症状を和らげる応急処置を優先して行います。</p>
             <p>治療にあたっては表面麻酔や電動麻酔器の使用、麻酔液の注入速度の工夫など、できるだけ痛みを抑えた丁寧な処置を心がけております（痛みの感じ方には個人差がございます）。途中で違和感や痛みを感じた際もすぐにお知らせいただけます。</p>
+            <div class="step-inline-links">
+              <a href="faq.html#cat-treatment-cost">→ 痛みに配慮した治療のよくある質問を見る</a>
+            </div>
           </div>
         </article>
 
@@ -936,8 +967,12 @@ footer .copy {
         </div>
 
         <div class="related-faq-box">
-          <p>駐車場のご案内や診療時間、お子様連れの通院など、ご来院前の疑問をまとめています。</p>
-          <a href="faq.html" class="related-faq-btn">初診や通院に関するよくある質問はこちら →</a>
+          <p>駐車場のご案内や診療時間、お子様連れの通院・矯正相談など、関連ページもあわせてご覧ください。</p>
+          <div class="related-links-group">
+            <a href="faq.html" class="related-faq-btn">初診や通院に関するよくある質問 →</a>
+            <a href="kids.html" class="related-faq-btn is-sub">小児歯科のご案内 →</a>
+            <a href="ortho.html" class="related-faq-btn is-sub">矯正歯科のご案内 →</a>
+          </div>
         </div>
       </div>
     </div>
