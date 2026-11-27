@@ -118,15 +118,7 @@ a:hover { opacity: 0.75; }
 img { max-width: 100%; height: auto; vertical-align: bottom; }
 .inner { max-width: 980px; margin: 0 auto; padding: 0 20px; }
 
-/* ヘッダー周り */
-.top-info {
-  background: var(--bg-box);
-  font-size: 0.78rem;
-  color: var(--text-sub);
-  padding: 6px 0;
-  text-align: center;
-  border-bottom: 1px solid var(--border-line);
-}
+/* ヘッダー周り（index.htmlと同一構造） */
 header {
   background: #ffffff;
   border-bottom: 1px solid var(--border-line);
@@ -138,13 +130,19 @@ header {
   align-items: center;
   gap: 12px;
 }
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .logo-area { min-width: 0; }
 .logo-area .site-title {
-  font-size: 1.4rem;
+  font-size: 1.75rem;
   font-family: 'Zen Maru Gothic', sans-serif;
   color: var(--base-color);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
   white-space: nowrap;
 }
 .logo-area .site-title a {
@@ -153,11 +151,11 @@ header {
 .logo-area .site-title a:hover {
   opacity: 0.85;
 }
-.logo-area p {
-  font-size: 0.72rem;
-  color: var(--text-sub);
-  margin-top: 2px;
-  white-space: nowrap;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 .header-contact {
   text-align: right;
@@ -185,7 +183,179 @@ header {
   line-height: 1.2;
 }
 
-/* グローバルナビ */
+/* 三本線メニューボタン */
+.menu-toggle-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--base-color);
+  color: #ffffff;
+  border: 1px solid var(--base-color);
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.menu-toggle-btn:hover {
+  opacity: 0.88;
+}
+.menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+}
+.menu-toggle-lines span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 1px;
+}
+.menu-toggle-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.menu-btn-sp { display: none; }
+.menu-btn-pc { display: inline-flex; }
+
+/* 三本線ドロワーメニュー */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(56, 50, 44, 0.45);
+  z-index: 1000;
+}
+.drawer-overlay.is-open {
+  display: block;
+}
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  background: #ffffff;
+  z-index: 1001;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  box-shadow: -4px 0 18px rgba(0,0,0,0.14);
+  display: flex;
+  flex-direction: column;
+}
+.drawer-panel.is-open {
+  transform: translateX(0);
+}
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--base-color);
+  color: #ffffff;
+}
+.drawer-head-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.drawer-close-btn {
+  background: rgba(255,255,255,0.16);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.drawer-body {
+  padding: 16px 18px 28px;
+  flex: 1;
+}
+.drawer-cat {
+  border-bottom: 1px solid var(--border-line);
+  padding: 12px 0;
+}
+.drawer-cat:last-child {
+  border-bottom: none;
+}
+.drawer-cat-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--sub-color);
+  margin-bottom: 8px;
+}
+.drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.drawer-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: var(--bg-natural);
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.drawer-links a:hover,
+.drawer-links a.is-current-link {
+  background: var(--bg-box);
+  border-color: var(--base-color);
+  color: var(--base-color);
+  opacity: 1;
+}
+.drawer-links a::after {
+  content: "→";
+  color: var(--base-color);
+  font-size: 0.85rem;
+}
+details.drawer-acc summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px;
+  background: var(--bg-box);
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--base-color);
+}
+details.drawer-acc summary::-webkit-details-marker {
+  display: none;
+}
+details.drawer-acc summary::after {
+  content: "＋";
+  font-size: 0.95rem;
+}
+details.drawer-acc[open] summary::after {
+  content: "－";
+}
+details.drawer-acc .drawer-links {
+  margin-top: 8px;
+  padding-left: 8px;
+}
+
+/* グローバルナビ（6項目） */
 .global-nav { background: var(--base-color); }
 .global-nav ul {
   display: flex;
@@ -597,12 +767,37 @@ footer .copy {
 /* スマホ対応 */
 @media (max-width: 768px) {
   body { padding-bottom: 58px; }
-  .top-info { font-size: 0.7rem; padding: 5px 8px; }
-  .header-flex { flex-direction: row; }
-  .logo-area .site-title { font-size: 1.2rem; }
-  .logo-area p { font-size: 0.66rem; }
-  .header-contact .tel-label { font-size: 0.65rem; }
-  .header-contact .tel-num { font-size: 1.02rem; padding: 6px 10px; }
+  header { padding: 12px 0; }
+  /* 1行目：左に大きい「けやき歯科」ロゴ、右に「≡ メニュー」ボタン、2行目：電話予約を右詰め */
+  .header-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .header-top-row {
+    width: 100%;
+  }
+  .logo-area .site-title {
+    font-size: 1.65rem;
+  }
+  .menu-btn-pc { display: none; }
+  .menu-btn-sp { display: inline-flex; padding: 7px 11px; }
+  .header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .header-contact {
+    width: 100%;
+    text-align: right;
+  }
+  .header-contact .tel-label {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+  .header-contact .tel-num {
+    font-size: 1.12rem;
+    padding: 7px 14px;
+  }
   .global-nav ul { flex-wrap: wrap; }
   .global-nav li { flex: 1 1 33.333%; border-bottom: 1px solid rgba(255,255,255,0.12); }
   .global-nav a { font-size: 0.8rem; padding: 9px 4px; }
@@ -662,40 +857,108 @@ footer .copy {
 </head>
 <body>
 
-<!-- 最上部インフォメーション -->
-<div class="top-info">
-  <div class="inner">
-    JR武蔵野線「吉川駅」南口 徒歩3分 ／「木売公園入口」バス停目の前 ／ 土曜・日曜も診療
-  </div>
-</div>
-
-<!-- ヘッダー -->
+<!-- ヘッダー（スマホ2段構成：1行目 左ロゴ＋右メニューボタン／2行目 右詰め電話予約） -->
 <header>
   <div class="inner header-flex">
-    <div class="logo-area">
-      <div class="site-title"><a href="index.html">けやき歯科</a></div>
-      <p>一般歯科・矯正歯科・小児歯科</p>
+    <div class="header-top-row">
+      <div class="logo-area">
+        <div class="site-title"><a href="index.html">けやき歯科</a></div>
+      </div>
+      <button type="button" class="menu-toggle-btn menu-btn-sp" id="menuOpenBtnSp" aria-expanded="false" aria-controls="drawerPanel" aria-label="メニューを開く">
+        <span class="menu-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="menu-toggle-text">メニュー</span>
+      </button>
     </div>
-    <div class="header-contact">
-      <span class="tel-label">お電話でのご予約・ご相談</span>
-      <a href="tel:0489812002" class="tel-num">📞 048-981-2002</a>
+    <div class="header-right">
+      <div class="header-contact">
+        <span class="tel-label">お電話でのご予約・ご相談</span>
+        <a href="tel:0489812002" class="tel-num">📞 048-981-2002</a>
+      </div>
+      <button type="button" class="menu-toggle-btn menu-btn-pc" id="menuOpenBtnPc" aria-expanded="false" aria-controls="drawerPanel" aria-label="メニューを開く">
+        <span class="menu-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="menu-toggle-text">メニュー</span>
+      </button>
     </div>
   </div>
 </header>
 
-<!-- ナビゲーション -->
+<!-- グローバルナビゲーション（6項目・スマホ縦2行×横3列） -->
 <nav class="global-nav" aria-label="メインメニュー">
   <div class="inner">
     <ul>
       <li><a href="index.html#features">当院の特徴</a></li>
-      <li><a href="index.html#services">診療案内</a></li>
-      <li><a href="index.html#flow">診療の流れ</a></li>
+      <li><a href="index.html#services" class="is-current">診療案内</a></li>
+      <li><a href="flow.html">初めての方へ</a></li>
       <li><a href="index.html#hours">診療時間</a></li>
-      <li><a href="index.html#access">アクセス</a></li>
       <li><a href="faq.html">よくある質問</a></li>
+      <li><a href="column.html">コラム</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- 三本線ドロワーメニュー（独立カテゴリ別） -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer-panel" id="drawerPanel" aria-label="サイト内メニュー" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="drawer-head-title">けやき歯科 メニュー</span>
+    <button type="button" class="drawer-close-btn" id="menuCloseBtn">✕ 閉じる</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">診療案内</p>
+      <details class="drawer-acc" open>
+        <summary>診療科目一覧を見る</summary>
+        <ul class="drawer-links">
+          <li><a href="general.html">一般歯科</a></li>
+          <li><a href="preventive.html">予防歯科・歯周病治療</a></li>
+          <li><a href="kids.html" class="is-current-link" aria-current="page">小児歯科</a></li>
+          <li><a href="ortho.html">矯正歯科</a></li>
+          <li><a href="denture.html">入れ歯・義歯</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">当院の特徴・初めての方へ</p>
+      <ul class="drawer-links">
+        <li><a href="index.html#features">当院の特徴</a></li>
+        <li><a href="flow.html">初めての方へ（初診の流れ）</a></li>
+      </ul>
+    </div>
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">診療時間・アクセス</p>
+      <ul class="drawer-links">
+        <li><a href="index.html#hours">診療時間</a></li>
+        <li><a href="index.html#access">アクセス・駐車場</a></li>
+      </ul>
+    </div>
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">よくある質問</p>
+      <ul class="drawer-links">
+        <li><a href="faq.html">よくある質問（Q&amp;A）</a></li>
+      </ul>
+    </div>
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">コラム</p>
+      <ul class="drawer-links">
+        <li><a href="column.html">お口の健康コラム</a></li>
+      </ul>
+    </div>
+    <div class="drawer-cat">
+      <p class="drawer-cat-title">採用情報</p>
+      <ul class="drawer-links">
+        <li><a href="recruit.html">採用情報</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
 
 <!-- パンくずリスト -->
 <nav class="breadcrumb" aria-label="パンくずリスト">
@@ -807,7 +1070,7 @@ footer .copy {
 
           <div class="tip-item">
             <h3>2. 「歯をピカピカにしに行こうね」と前向きに声をかけてあげてください</h3>
-            <p>「痛くないからね」「こわくないよ」と声をかけると、かえってお子様が不安を感じてしまうことがあります。ご来院前は「歯をピカピカにしに行こうね」「歯医者さんに元気な歯を見てもらおうね」と明るく前向きにお話しいただくと、お子様も安心して受診しやすくなります。</p>
+            <p>「こわくないよ」と声をかけると、かえってお子様が不安を感じてしまうことがあります。ご来院前は「歯をピカピカにしに行こうね」「歯医者さんに元気な歯を見てもらおうね」と明るく前向きにお話しいただくと、お子様も安心して受診しやすくなります。慣れるペースや必要なステップには個人差がありますので、ご家庭でも無理のない形でお話しください。詳しくはコラム「<a href="column-03.html" class="inline-text-link">お子様が歯医者の雰囲気に少しずつ慣れるための工夫</a>」でもご紹介しております。</p>
           </div>
 
           <div class="tip-item">
@@ -822,6 +1085,8 @@ footer .copy {
             <a href="faq.html#cat-kids-dental" class="related-faq-btn">小児歯科・お子様連れのよくある質問 →</a>
             <a href="flow.html" class="related-faq-btn is-sub">初診の流れ・持ち物を見る →</a>
             <a href="ortho.html" class="related-faq-btn is-sub">矯正歯科のご案内を見る →</a>
+            <a href="column-03.html" class="related-faq-btn is-sub">コラム：歯医者の雰囲気に慣れる工夫 →</a>
+            <a href="column.html" class="related-faq-btn is-sub">お口の健康コラム一覧へ →</a>
           </div>
         </div>
       </div>
@@ -894,6 +1159,38 @@ footer .copy {
   <a href="tel:0489812002" class="sp-tel">📞 電話をかける</a>
   <a href="index.html#access" class="sp-map">📍 アクセス・地図</a>
 </div>
+
+<!-- ドロワーメニュー開閉制御 -->
+<script>
+(function() {
+  var openBtnSp = document.getElementById('menuOpenBtnSp');
+  var openBtnPc = document.getElementById('menuOpenBtnPc');
+  var closeBtn = document.getElementById('menuCloseBtn');
+  var overlay = document.getElementById('drawerOverlay');
+  var panel = document.getElementById('drawerPanel');
+
+  function openMenu() {
+    panel.classList.add('is-open');
+    overlay.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    if (openBtnSp) openBtnSp.setAttribute('aria-expanded', 'true');
+    if (openBtnPc) openBtnPc.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    panel.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    if (openBtnSp) openBtnSp.setAttribute('aria-expanded', 'false');
+    if (openBtnPc) openBtnPc.setAttribute('aria-expanded', 'false');
+  }
+
+  if (openBtnSp) openBtnSp.addEventListener('click', openMenu);
+  if (openBtnPc) openBtnPc.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+})();
+</script>
 
 </body>
 </html>
