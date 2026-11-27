@@ -46,8 +46,7 @@ gtag('js', new Date());
         "@type": "Answer",
         "text": "はい、平日の夜間や土日も診療を行っております。月・火・木・金は19:30まで、土曜日は17:00まで、日曜日は午前9:30〜14:00まで診療しております（休診日は水曜・祝日です）。お仕事や学校帰り、週末のご都合に合わせて通院いただけます。"
       }
-    }
-      ,
+    },
     {
       "@type": "Question",
       "name": "予約なしでも受診できますか？",
@@ -71,8 +70,7 @@ gtag('js', new Date());
         "@type": "Answer",
         "text": "初診時は問診票のご記入からお口の検査、現状のご説明、応急処置や今後の治療計画のご相談まで含め、おおよそ45分〜60分ほどお時間をいただいております（症状や処置内容によって前後する場合がございます）。お口の状態を丁寧にご確認し、ご納得いただいたうえで治療を進めてまいりますのでご安心ください。"
       }
-    }
-    ,
+    },
     {
       "@type": "Question",
       "name": "子どもは何歳から受診できますか？",
@@ -96,8 +94,7 @@ gtag('js', new Date());
         "@type": "Answer",
         "text": "もちろん大丈夫です。当院ではお子様の気持ちに寄り添い、無理やり治療を進めることはいたしません。まずは診療台に座る練習や器具を見て触れてみるステップから少しずつ慣れていただき、お子様お一人おひとりのペースに合わせて優しく丁寧に診療を行います。"
       }
-    }
-    ,
+    },
     {
       "@type": "Question",
       "name": "治療の痛みが苦手なのですが、配慮してもらえますか？",
@@ -122,7 +119,6 @@ gtag('js', new Date());
         "text": "当院には矯正歯科の認定医（女医）が在籍しており、お子様から大人の方まで歯並びや噛み合わせのご相談を受け付けております。むし歯や歯周病などの一般的な治療は健康保険適用内で対応しております。矯正治療や特別な材料を用いる治療など、自費診療（自由診療）をご提案する際は、事前に費用や治療期間・メリット・一般的なリスクについて丁寧にご説明し、ご納得いただいたうえで治療を進めますのでご安心ください。"
       }
     }
-
   ]
 }
 </script>
@@ -320,19 +316,23 @@ section { padding: 48px 0; }
   margin-bottom: 20px;
 }
 
-/* Q&Aリスト */
+/* Q&Aリスト（details / summary アコーディオン） */
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
-.faq-item {
+details.faq-item {
   background: #ffffff;
   border: 1px solid var(--border-line);
   border-radius: 6px;
-  padding: 22px 24px;
+  padding: 0 24px;
+  transition: border-color 0.2s;
 }
-.faq-q {
+details.faq-item:hover {
+  border-color: var(--base-color);
+}
+summary.faq-q {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -341,7 +341,19 @@ section { padding: 48px 0; }
   font-weight: 700;
   color: var(--text-main);
   line-height: 1.55;
-  padding-bottom: 14px;
+  padding: 18px 0;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+summary.faq-q::-webkit-details-marker {
+  display: none;
+}
+summary.faq-q::marker {
+  display: none;
+  content: "";
+}
+details.faq-item[open] summary.faq-q {
   border-bottom: 1px dashed var(--border-line);
 }
 .faq-q-mark {
@@ -359,11 +371,48 @@ section { padding: 48px 0; }
   border-radius: 4px;
   margin-top: 1px;
 }
+.faq-q-text {
+  flex: 1;
+}
+.faq-toggle-icon {
+  flex-shrink: 0;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  margin-left: 4px;
+  transition: transform 0.25s ease;
+}
+.faq-toggle-icon::before,
+.faq-toggle-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--base-color);
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.faq-toggle-icon::before {
+  width: 14px;
+  height: 2px;
+}
+.faq-toggle-icon::after {
+  width: 2px;
+  height: 14px;
+}
+details.faq-item[open] .faq-toggle-icon {
+  transform: rotate(180deg);
+}
+details.faq-item[open] .faq-toggle-icon::after {
+  opacity: 0;
+}
 .faq-a {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding-top: 14px;
+  padding: 16px 0 20px;
   font-size: 0.94rem;
   color: var(--text-main);
   line-height: 1.85;
@@ -564,9 +613,9 @@ footer .copy {
   .page-header h1 { font-size: 1.35rem; }
   section { padding: 36px 0; }
   .cat-heading { font-size: 1.12rem; padding: 10px 14px; }
-  .faq-item { padding: 18px 16px; }
-  .faq-q { font-size: 1rem; gap: 10px; }
-  .faq-a { font-size: 0.9rem; gap: 10px; }
+  details.faq-item { padding: 0 16px; }
+  summary.faq-q { font-size: 1rem; gap: 10px; padding: 16px 0; }
+  .faq-a { font-size: 0.9rem; gap: 10px; padding: 14px 0 18px; }
   .guide-card { padding: 22px 16px; }
   .guide-tel-btn { font-size: 1.2rem; padding: 10px 20px; width: 100%; }
   .guide-info-table th,
@@ -673,11 +722,12 @@ footer .copy {
 
         <div class="faq-list">
           <!-- Q1 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>駐車場はありますか？</span>
-            </h3>
+              <span class="faq-q-text">駐車場はありますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -685,14 +735,15 @@ footer .copy {
                 <p>もし満車の場合は、お手数ですがお電話（<a href="tel:0489812002">048-981-2002</a>）にてご連絡いただければご案内いたします。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q2 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>駅やバス停からのアクセスを教えてください。</span>
-            </h3>
+              <span class="faq-q-text">駅やバス停からのアクセスを教えてください。</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -701,14 +752,15 @@ footer .copy {
                 <a href="index.html#access" class="faq-inline-link">トップページの地図・バス案内を見る</a>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q3 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>平日の夜や土曜日・日曜日も診療していますか？</span>
-            </h3>
+              <span class="faq-q-text">平日の夜や土曜日・日曜日も診療していますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -716,20 +768,22 @@ footer .copy {
                 <p>お仕事や学校帰り、週末のご都合に合わせて無理なく通院いただけます。ご来院の際は事前にお電話（<a href="tel:0489812002">048-981-2002</a>）にてご予約をお願いいたします。</p>
               </div>
             </div>
-          </article>
+          </details>
         </div>
       </div>
+
       <!-- カテゴリー2：ご予約・初診の流れ・持ち物 -->
       <div class="faq-category" id="cat-reservation-firstvisit">
         <h2 class="cat-heading">ご予約・初診の流れ・持ち物</h2>
 
         <div class="faq-list">
           <!-- Q1 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>予約なしでも受診できますか？</span>
-            </h3>
+              <span class="faq-q-text">予約なしでも受診できますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -737,14 +791,15 @@ footer .copy {
                 <p>急な歯の痛みや詰め物が取れたといった急患にもできる限り対応いたしますので、まずはお電話にて現在の症状をご相談ください。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q2 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>初診のときは何を持っていけばよいですか？</span>
-            </h3>
+              <span class="faq-q-text">初診のときは何を持っていけばよいですか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -752,14 +807,15 @@ footer .copy {
                 <p>また、現在服用中のお薬がある方は「お薬手帳」、各種医療証（子ども医療費受給資格証など）をお持ちの方はあわせてご持参ください。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q3 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>初診の所要時間や当日の流れを教えてください。</span>
-            </h3>
+              <span class="faq-q-text">初診の所要時間や当日の流れを教えてください。</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -768,20 +824,22 @@ footer .copy {
                 <a href="flow.html" class="faq-inline-link">初診の流れを詳しく見る</a>
               </div>
             </div>
-          </article>
+          </details>
         </div>
       </div>
+
       <!-- カテゴリー3：小児歯科・お子様連れの通院 -->
       <div class="faq-category" id="cat-kids-dental">
         <h2 class="cat-heading">小児歯科・お子様連れの通院</h2>
 
         <div class="faq-list">
           <!-- Q1 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>子どもは何歳から受診できますか？</span>
-            </h3>
+              <span class="faq-q-text">子どもは何歳から受診できますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -789,14 +847,15 @@ footer .copy {
                 <p>むし歯がなくても、お口の中のチェックや毎日の歯磨きのアドバイス、フッ素塗布などで早いうちから歯医者さんの雰囲気に慣れておくことで、お子様のお口の健康を守りやすくなります。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q2 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>ベビーカーでの来院や、保護者も一緒に診療室へ入れますか？</span>
-            </h3>
+              <span class="faq-q-text">ベビーカーでの来院や、保護者も一緒に診療室へ入れますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -804,14 +863,15 @@ footer .copy {
                 <p>また、診療室には保護者の方も一緒に付き添っていただけますので、ご予約時（<a href="tel:0489812002">048-981-2002</a>）にお気軽にお知らせください。待合室にはキッズスペースや絵本・児童書・マンガもご用意しております。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q3 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>歯医者さんが苦手で泣いてしまう子どもでも大丈夫でしょうか？</span>
-            </h3>
+              <span class="faq-q-text">歯医者さんが苦手で泣いてしまう子どもでも大丈夫でしょうか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -819,20 +879,22 @@ footer .copy {
                 <p>まずは診療台に座る練習や器具を見て触れてみるステップから少しずつ慣れていただき、お子様お一人おひとりのペースに合わせて優しく丁寧に診療を行います。</p>
               </div>
             </div>
-          </article>
+          </details>
         </div>
       </div>
+
       <!-- カテゴリー4：一般歯科・予防・矯正歯科・費用について -->
       <div class="faq-category" id="cat-treatment-cost">
         <h2 class="cat-heading">一般歯科・予防・矯正歯科・費用について</h2>
 
         <div class="faq-list">
           <!-- Q1 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>治療の痛みが苦手なのですが、配慮してもらえますか？</span>
-            </h3>
+              <span class="faq-q-text">治療の痛みが苦手なのですが、配慮してもらえますか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -840,14 +902,15 @@ footer .copy {
                 <p>治療前にお口の状態と処置内容を分かりやすくご説明し、ご不安が強い場合や途中で痛みを感じたときは遠慮なくお知らせいただけるよう配慮していますので、苦手な方もどうぞご相談ください。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q2 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>定期検診（メンテナンス）はどのくらいの間隔で通えばよいですか？</span>
-            </h3>
+              <span class="faq-q-text">定期検診（メンテナンス）はどのくらいの間隔で通えばよいですか？</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -855,14 +918,15 @@ footer .copy {
                 <p>毎日の歯磨きでは落としきれない歯石やバイオフィルムのクリーニング、お口のトラブルの早期発見につなげるため、お一人おひとりに合わせた無理のない通院ペースをご一緒にご相談しながら進めてまいります。</p>
               </div>
             </div>
-          </article>
+          </details>
 
           <!-- Q3 -->
-          <article class="faq-item">
-            <h3 class="faq-q">
+          <details class="faq-item">
+            <summary class="faq-q">
               <span class="faq-q-mark" aria-hidden="true">Q</span>
-              <span>矯正歯科の相談や、保険診療・自費診療の違いについて教えてください。</span>
-            </h3>
+              <span class="faq-q-text">矯正歯科の相談や、保険診療・自費診療の違いについて教えてください。</span>
+              <span class="faq-toggle-icon" aria-hidden="true"></span>
+            </summary>
             <div class="faq-a">
               <span class="faq-a-mark" aria-hidden="true">A</span>
               <div class="faq-a-body">
@@ -870,7 +934,7 @@ footer .copy {
                 <p>むし歯や歯周病などの一般的な治療は健康保険適用内で対応しております。矯正治療や特別な材料を用いる治療など、自費診療（自由診療）をご提案する際は、事前に費用や治療期間・メリット・一般的なリスクについて丁寧にご説明し、ご納得いただいたうえで治療を進めますのでご安心ください。</p>
               </div>
             </div>
-          </article>
+          </details>
         </div>
       </div>
 
