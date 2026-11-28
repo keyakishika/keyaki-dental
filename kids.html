@@ -469,9 +469,12 @@ section { padding: 48px 0; }
   border: 1px solid var(--border-line);
   border-radius: 6px;
   padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
 }
 .care-num {
   display: inline-block;
+  align-self: flex-start;
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent-color);
@@ -492,6 +495,19 @@ section { padding: 48px 0; }
   font-size: 0.92rem;
   color: var(--text-main);
   line-height: 1.85;
+}
+.care-photo-wrap {
+  margin-top: 16px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-line);
+  background: var(--bg-box);
+}
+.care-photo-wrap img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
 }
 
 /* 年齢・成長に合わせた予防とケア（3つの目安） */
@@ -808,6 +824,7 @@ footer .copy {
   .sec-head h2 { font-size: 1.25rem; }
   .care-grid { grid-template-columns: 1fr; gap: 14px; }
   .care-card { padding: 20px 18px; }
+  .care-photo-wrap { margin-top: 14px; }
   .stage-card { padding: 20px 18px; }
   .stage-card h3 { font-size: 1.08rem; }
   .stage-card p { font-size: 0.9rem; }
@@ -1012,6 +1029,9 @@ footer .copy {
           <span class="care-num">配慮 04</span>
           <h3>待合室にキッズスペース・絵本コーナー完備</h3>
           <p>院内の待合室には、お子様が楽しく遊べるキッズスペースのほか、絵本・児童書・マンガをご用意しております。診察までの待ち時間もリラックスして過ごせるよう工夫しておりますので、ご兄弟・ご家族みなさまで安心してお越しください。</p>
+          <figure class="care-photo-wrap">
+            <img src="IMG_2246.jpeg" alt="キッズスペース・絵本コーナー">
+          </figure>
         </div>
       </div>
     </div>
